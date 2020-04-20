@@ -1,7 +1,10 @@
 import React from 'react';
 import {Doughnut, defaults} from 'react-chartjs-2';
+import {useTranslation} from 'react-i18next';
 
 function GenderChart(props) {
+  const {t} = useTranslation();
+  
   defaults.global.tooltips.intersect = false;
   defaults.global.tooltips.mode = 'nearest';
   defaults.global.tooltips.position = 'average';
@@ -47,7 +50,7 @@ function GenderChart(props) {
         label: 'Hola',
       },
     ],
-    labels: ['Male', 'Female', 'Awaiting Details'],
+    labels: [t('Male'), t('Female'), t('Awaiting Details')],
   };
 
   const chartOptions = {

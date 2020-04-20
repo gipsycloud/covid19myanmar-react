@@ -1,8 +1,10 @@
 import React from 'react';
 import {Line, defaults} from 'react-chartjs-2';
 import moment from 'moment';
+import {useTranslation} from 'react-i18next';
 
 function TotalConfirmedChart(props) {
+  const {t} = useTranslation();
   const dates = [];
   const confirmed = [];
   const recovered = [];
@@ -48,7 +50,7 @@ function TotalConfirmedChart(props) {
         data: confirmed,
         borderCapStyle: 'round',
         pointBackgroundColor: '#ff073a',
-        label: 'Confirmed',
+        label: t('confirmed.full'),
         borderColor: '#ff073a',
         pointHoverRadius: 2,
       },
@@ -57,7 +59,7 @@ function TotalConfirmedChart(props) {
         data: recovered,
         borderCapStyle: 'round',
         pointBackgroundColor: '#28a745',
-        label: 'Recovered',
+        label: t('recovered.full'),
         borderColor: '#28a745',
         pointHoverRadius: 2,
       },
@@ -66,7 +68,7 @@ function TotalConfirmedChart(props) {
         data: deceased,
         borderCapStyle: 'round',
         pointBackgroundColor: '#6c757d',
-        label: 'Deceased',
+        label: t('deceased.full'),
         borderColor: '#6c757d',
         pointHoverRadius: 2,
       },

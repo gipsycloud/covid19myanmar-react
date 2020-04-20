@@ -114,7 +114,7 @@ export const STATE_CODES = {
   "MM-03": 'Magway',
   "MM-04": 'Mandalay',
   "MM-15": 'Mon',
-  "MM-18": 'Naypyitaw',
+  "MM-18": 'Nay Pyi Taw',
   "MM-16": 'Rakhine',
   "MM-01": 'Sagaing',
   "MM-17": 'Shan',

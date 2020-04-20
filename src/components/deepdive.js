@@ -6,8 +6,10 @@ import NationalityChart from './Charts/nationalitychart';
 import AllStatesChart from './Charts/allstates';
 import TotalConfirmedChart from './Charts/totalconfirmedchart';
 import DailyConfirmedChart from './Charts/dailyconfirmedchart';
+import {useTranslation} from 'react-i18next';
 
 function DeepDive(props) {
+  const {t} = useTranslation();
   const [fetched, setFetched] = useState(false);
   const [timeseries, setTimeseries] = useState([]);
   const [rawData, setRawData] = useState([]);
@@ -44,35 +46,35 @@ function DeepDive(props) {
       <section className="cards">
         <div className="card fadeInUp" style={{animationDelay: '0.7s'}}>
           <TotalConfirmedChart
-            title="Myanmar - Total Cases"
+            title={t("Myanmar - Total Cases")}
             timeseries={timeseries}
           />
         </div>
 
         <div className="card fadeInUp" style={{animationDelay: '0.7s'}}>
           <DailyConfirmedChart
-            title="Myanmar - Daily Cases"
+            title={t("Myanmar - Daily Cases")}
             timeseries={timeseries}
           />
         </div>
 
         <div className="card fadeInUp" style={{animationDelay: '0.7s'}}>
           <AllStatesChart
-            title="States - Total Cases"
+            title={t("States - Total Cases")}
             data={statesTimeSeries}
           />
         </div>
 
         <div className="card fadeInUp" style={{animationDelay: '0.7s'}}>
-          <GenderChart title="Patient Gender" data={rawData} />
+          <GenderChart title={t("Patient Gender")} data={rawData} />
         </div>
 
         <div className="card fadeInUp" style={{animationDelay: '0.7s'}}>
-          <AgeChart title="Patient Age" data={rawData} />
+          <AgeChart title={t("Patient Age")} data={rawData} />
         </div>
 
         <div className="card fadeInUp" style={{animationDelay: '0.7s'}}>
-          <NationalityChart title="Patient Nationality" data={rawData} />
+          <NationalityChart title={t("Patient Nationality")} data={rawData} />
         </div>
       </section>
     </div>

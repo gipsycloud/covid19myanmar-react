@@ -1,7 +1,10 @@
 import React from 'react';
 import {Bar, defaults} from 'react-chartjs-2';
+import {useTranslation} from 'react-i18next';
 
 function AgeChart(props) {
+  const {t} = useTranslation();
+  
   defaults.global.tooltips.intersect = false;
   defaults.global.tooltips.mode = 'nearest';
   defaults.global.tooltips.position = 'average';
@@ -103,7 +106,7 @@ function AgeChart(props) {
       <div className="chart-content doughnut">
         <Bar data={chartData} options={chartOptions} />
       </div>
-      <div className="chart-note">*Awaiting details for {unknown} patients</div>
+      <div className="chart-note">*{t("awaiting details for", {count: unknown})}</div>
     </div>
   );
 }

@@ -2,7 +2,10 @@ import React from 'react';
 import {Line, defaults} from 'react-chartjs-2';
 import moment from 'moment';
 import {getStateName} from '../../utils/common-functions';
+import {useTranslation} from 'react-i18next';
+
 function AllStatesChart(props) {
+  const {t} = useTranslation();
   const dates = [];
   const chartReference = React.createRef();
 
@@ -99,7 +102,7 @@ function AllStatesChart(props) {
       data: statesData.get(key),
       borderCapStyle: 'round',
       pointBackgroundColor: colors[index],
-      label: getStateName(key),
+      label: t(`statenames.${getStateName(key).toLowerCase()}`),
       borderColor: colors[index],
       pointHoverRadius: 0.5,
     });
@@ -197,7 +200,7 @@ function AllStatesChart(props) {
         <Line data={dataset} options={options} ref={chartReference} />
       </div>
       <div className="chart-note" style={{marginTop: '0px', height: '30px'}}>
-        <button onClick={toggleSelection}>Toggle Selection</button>
+        <button onClick={toggleSelection}>{t("Toggle Selection")}</button>
       </div>
     </div>
   );
