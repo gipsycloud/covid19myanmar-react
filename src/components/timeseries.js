@@ -378,10 +378,9 @@ function TimeSeries(props) {
   }, [timeseries, graphData]);
 
   const focusDate = moment(datapoint.date);
-  let dateStr = focusDate.format('DD MMMM');
-  dateStr += focusDate.isSame(moment().subtract(1, 'days'), 'day')
-    ? ' Yesterday'
-    : '';
+  let dateStr = focusDate.isSame(moment().subtract(1, 'days'), 'day')
+    ? t("Yesterday")
+    : focusDate.format('DD MMMM');
 
   const chartKey1 = chartType === 1 ? 'totalconfirmed' : 'dailyconfirmed';
   const chartKey2 = chartType === 1 ? 'totalactive' : 'dailyactive';
@@ -421,7 +420,7 @@ function TimeSeries(props) {
 
         <div className="svg-parent is-blue">
           <div className="stats is-blue">
-            <h5 className={`${!moving ? 'title' : ''}`}>Active</h5>
+            <h5 className={`${!moving ? 'title' : ''}`}>{t("active.full")}</h5>
             <h5 className={`${moving ? 'title' : ''}`}>{`${dateStr}`}</h5>
             <div className="stats-bottom">
               <h2>{formatNumber(datapoint[chartKey2])}</h2>
