@@ -16,14 +16,12 @@ i18n
     backend: {
       loadPath: '/locales/{{lng}}.json',
     },
-    interpolation: {
-      escapeValue: false,
-    },
     detection: {
       // order and from where user language should be detected
       order: ['default', 'querystring', 'cookie', 'localStorage', 'navigator', 'htmlTag', 'path', 'subdomain']
     },
     interpolation: {
+      escapeValue: false,
       format: function(value, format, lng) {
         if (value instanceof Date) return moment(value).local(lng).format(format);
         if (format === 'numeric') return Number(value).toLocaleString(lng);
