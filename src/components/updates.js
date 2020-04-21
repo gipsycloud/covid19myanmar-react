@@ -10,7 +10,7 @@ function Updates(props) {
   useEffect(() => {
     if (fetched === false) {
       axios
-        .get('https://raw.githubusercontent.com/thantthet/covid19-api/master/updatelog/log.json')
+        .get('https://thantthet.github.io/covid19-api/updatelog/log.json')
         .then((response) => {
           setUpdates(response.data);
           setFetched(true);

@@ -47,9 +47,9 @@ function State(props) {
         {data: stateDistrictWiseResponse},
         {data: statesDailyResponse},
       ] = await Promise.all([
-        axios.get('https://raw.githubusercontent.com/thantthet/covid19-api/master/data.json'),
-        axios.get('https://raw.githubusercontent.com/thantthet/covid19-api/master/state_district_wise.json'),
-        axios.get('https://raw.githubusercontent.com/thantthet/covid19-api/master/states_daily.json'),
+        axios.get('https://thantthet.github.io/covid19-api/data.json'),
+        axios.get('https://thantthet.github.io/covid19-api/state_district_wise.json'),
+        axios.get('https://thantthet.github.io/covid19-api/states_daily.json'),
       ]);
       const states = dataResponse.statewise;
       setStateData(states.find((s) => s.statecode === code));

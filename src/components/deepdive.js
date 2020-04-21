@@ -28,9 +28,9 @@ function DeepDive(props) {
         rawDataResponse,
         stateDailyResponse,
       ] = await Promise.all([
-        axios.get('https://raw.githubusercontent.com/thantthet/covid19-api/master/data.json'),
-        axios.get('https://raw.githubusercontent.com/thantthet/covid19-api/master/raw_data.json'),
-        axios.get('https://raw.githubusercontent.com/thantthet/covid19-api/master/states_daily.json'),
+        axios.get('https://thantthet.github.io/covid19-api/data.json'),
+        axios.get('https://thantthet.github.io/covid19-api/raw_data.json'),
+        axios.get('https://thantthet.github.io/covid19-api/states_daily.json'),
       ]);
       setTimeseries(response.data.cases_time_series);
       setStatesTimeSeries(stateDailyResponse.data.states_daily);

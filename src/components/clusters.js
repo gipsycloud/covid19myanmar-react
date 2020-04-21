@@ -66,7 +66,7 @@ function Clusters({stateCode}) {
     async function getData() {
       try {
         const rawDataResponse = await axios.get(
-          'https://raw.githubusercontent.com/thantthet/covid19-api/master/raw_data.json'
+          'https://thantthet.github.io/covid19-api/raw_data.json'
         );
         setStateRawData(
           rawDataResponse.data.raw_data.filter((d) => d.statecode === stateCode)

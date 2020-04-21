@@ -54,7 +54,7 @@ function Home(props) {
     if (fetched === false) {
       getStates();
       axios
-        .get('https://raw.githubusercontent.com/thantthet/covid19-api/master/updatelog/log.json')
+        .get('https://thantthet.github.io/covid19-api/updatelog/log.json')
         .then((response) => {
           const currentTimestamp = response.data
             .slice()
@@ -83,9 +83,9 @@ function Home(props) {
         stateDistrictWiseResponse,
         {data: statesDailyResponse},
       ] = await Promise.all([
-        axios.get('https://raw.githubusercontent.com/thantthet/covid19-api/master/data.json'),
-        axios.get('https://raw.githubusercontent.com/thantthet/covid19-api/master/state_district_wise.json'),
-        axios.get('https://raw.githubusercontent.com/thantthet/covid19-api/master/states_daily.json'),
+        axios.get('https://thantthet.github.io/covid19-api/data.json'),
+        axios.get('https://thantthet.github.io/covid19-api/state_district_wise.json'),
+        axios.get('https://thantthet.github.io/covid19-api/states_daily.json'),
       ]);
       setStates(data.statewise);
       const ts = parseStateTimeseries(statesDailyResponse);
