@@ -107,5 +107,16 @@
   "Visit state page": "တိုင်း/ပြည်နယ်စာမျက်နှာ",
   "District": "ခရိုင်",
   "Back": "နောက်သို့",
-  "Yesterday": "မနေ့က"
+  "Yesterday": "မနေ့က",
+  "Patient Age": "အသက်",
+  "States - Total Cases": "တိုင်း/ပြည်နယ် - ကူးစက်မှုအားလုံး",
+  "Myanmar - Daily Cases": "မြန်မာနိုင်ငံ - တစ်ရက်စီ",
+  "Myanmar - Total Cases": "မြန်မာနိုင်ငံ - ကူးစက်မှုအားလုံး",
+  "Patient Gender": "လိင်",
+  "Patient Nationality": "နိုင်ငံသား",
+  "Male": "ကျား",
+  "Female": "မ",
+  "Awaiting Details": "အချက်အလက်စောင့်နေဆဲ",
+  "awaiting details for": "လူနာ {{count, numeric}} ဦး၏အချက်အလက်ကိုစောင့်နေဆဲ",
+  "Toggle Selection": "Toggle Selection"
 }

@@ -108,5 +108,16 @@
   "Visit state page": "Visit state page",
   "District": "District",
   "Back": "Back",
-  "Yesterday": "Yesterday"
+  "Yesterday": "Yesterday",
+  "awaiting details for": "Awaiting details for {{count}} patients",
+  "Toggle Selection": "Toggle Selection",
+  "Awaiting Details": "Awaiting Details",
+  "Female": "Female",
+  "Male": "Male",
+  "Myanmar - Daily Cases": "Myanmar - Daily Cases",
+  "Myanmar - Total Cases": "Myanmar - Total Cases",
+  "Patient Age": "Patient Age",
+  "Patient Gender": "Patient Gender",
+  "Patient Nationality": "Patient Nationality",
+  "States - Total Cases": "States - Total Cases"
 }
