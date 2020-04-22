@@ -1,7 +1,11 @@
+import Row from './row';
+
 import React, {useState, useEffect} from 'react';
 import {useTranslation} from 'react-i18next';
 
-import Row from './row';
+const isEqual = () => {
+  return true;
+};
 
 function Table(props) {
   const {t} = useTranslation();
@@ -296,4 +300,4 @@ function Table(props) {
   }
 }
 
-export default Table;
+export default React.memo(Table, isEqual);

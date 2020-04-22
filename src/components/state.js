@@ -1,22 +1,22 @@
-import axios from 'axios';
-import React, {useEffect, useRef, useState} from 'react';
-import {Link, useParams} from 'react-router-dom';
-import * as Icon from 'react-feather';
 import {useTranslation} from 'react-i18next';
-
-import {
-  formatDateAbsolute,
-  parseStateTimeseries,
-} from '../utils/common-functions';
-import {MAP_META, STATE_CODES} from '../constants';
-
 import Clusters from './clusters';
 import DeltaBarGraph from './deltabargraph';
+import Footer from './footer';
 import Level from './level';
 import MapExplorer from './mapexplorer';
 import Minigraph from './minigraph';
 import TimeSeries from './timeseries';
-import Footer from './footer';
+
+import {MAP_META, STATE_CODES} from '../constants';
+import {
+  formatDateAbsolute,
+  parseStateTimeseries,
+} from '../utils/commonfunctions';
+
+import axios from 'axios';
+import React, {useEffect, useRef, useState} from 'react';
+import * as Icon from 'react-feather';
+import {Link, useParams} from 'react-router-dom';
 
 function State(props) {
   const {t} = useTranslation();
@@ -73,6 +73,7 @@ function State(props) {
             <Link to="/">Home</Link>/
             <Link to={`${stateCode}`}>{stateName}</Link>
           </div>
+
           <div className="header">
             <div
               className="header-left fadeInUp"
@@ -130,6 +131,7 @@ function State(props) {
                   <div className="districts">
                     {districtData[stateName]
                       ? Object.keys(districtData[stateName].districtData)
+                          .filter((d) => d !== 'Unknown')
                           .sort(
                             (a, b) =>
                               districtData[stateName].districtData[b]
@@ -255,4 +257,4 @@ function State(props) {
   );
 }
 
-export default State;
+export default React.memo(State);

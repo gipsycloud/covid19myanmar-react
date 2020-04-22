@@ -1,7 +1,9 @@
-import React, {useState} from 'react';
+import anime from 'animejs';
+import React, {useState, useRef} from 'react';
+import * as Icon from 'react-feather';
 import {Link} from 'react-router-dom';
+import {useEffectOnce, useLockBodyScroll} from 'react-use';
 import LanguageSwitcher from './languageswitcher';
-import {useTranslation} from 'react-i18next';
 
 const navLinkProps = (path, animationDelay) => ({
   className: `fadeInUp ${window.location.pathname === path ? 'focused' : ''}`,
@@ -10,70 +12,114 @@ const navLinkProps = (path, animationDelay) => ({
   },
 });
 
-function Navbar({pages}) {
-  const {t} = useTranslation();
-
+function Navbar({pages, darkMode, setDarkMode}) {
   const [expand, setExpand] = useState(false);
+  useLockBodyScroll(expand);
 
   return (
-    <div
-      className="Navbar"
-      style={{width: window.innerWidth > 769 && expand ? '6rem' : ''}}
-    >
-      <div className="navbar-left"><LanguageSwitcher /></div>
+    <div className="Navbar">
+      <div className="navbar-language">
+        <LanguageSwitcher />
+      </div>
+      <div
+        className="navbar-left"
+        onClick={() => setDarkMode((prevMode) => !prevMode)}
+      >
+        {darkMode ? <Icon.Sun color={'#ffc107'} /> : <Icon.Moon />}
+      </div>
       <div className="navbar-middle">
         <Link to="/">
           Covid19<span>Myanmar</span>
         </Link>
       </div>
+
       <div
         className="navbar-right"
-        style={{
-          background: expand ? '#4c75f2' : '',
-          color: expand ? 'white' : '',
-        }}
         onClick={() => {
           setExpand(!expand);
         }}
+        onMouseEnter={() => {
+          if (window.innerWidth > 769) {
+            setExpand(true);
+            anime({
+              targets: '.navbar-right path',
+              strokeDashoffset: [anime.setDashoffset, 0],
+              easing: 'easeInOutSine',
+              duration: 250,
+              delay: function (el, i) {
+                return i * 250;
+              },
+              direction: 'alternate',
+              loop: false,
+            });
+          }
+        }}
       >
-        {expand ? t('Close') : t('Menu')}
+        {window.innerWidth < 769 && <span>{expand ? 'Close' : 'Menu'}</span>}
+        {window.innerWidth > 769 && (
+          <React.Fragment>
+            <span>
+              <Icon.Home />
+            </span>
+            <span>
+              <Icon.Users />
+            </span>
+            <span>
+              <Icon.BarChart2 />
+            </span>
+          </React.Fragment>
+        )}
       </div>
-      {expand && (
-        <div
-          className="expand"
-          style={{left: window.innerWidth > 769 && expand ? '6rem' : ''}}
-        >
-          {pages.map((page, i) => {
-            if (page.showInNavbar === true) {
-              return (
-                <Link
-                  to={page.pageLink}
-                  key={i}
-                  onClick={() => {
-                    setExpand(false);
-                  }}
-                >
-                  <span
-                    {...navLinkProps(
-                      page.pageLink,
-                      page.animationDelayForNavbar
-                    )}
-                  >
-                    {page.displayName}
-                  </span>
-                </Link>
-              );
-            }
-            return null;
-          })}
-          <div
-            className="expand-bottom fadeInUp"
-            style={{animationDelay: '1s'}}
-          >
-            <h5>A crowdsourced initiative.</h5>
-          </div>
-        </div>
-      )}
+
+      {expand && <Expand expand={expand} pages={pages} setExpand={setExpand} />}
+    </div>
+  );
+}
+
+function Expand({expand, pages, setExpand}) {
+  const expandElement = useRef(null);
+
+  useEffectOnce(() => {
+    anime({
+      targets: expandElement.current,
+      translateX: '10rem',
+      easing: 'easeOutExpo',
+      duration: 250,
+    });
+  });
+
+  return (
+    <div
+      className="expand"
+      ref={expandElement}
+      onMouseLeave={() => {
+        setExpand(false);
+      }}
+    >
+      {pages.map((page, i) => {
+        if (page.showInNavbar === true) {
+          return (
+            <Link
+              to={page.pageLink}
+              key={i}
+              onClick={() => {
+                setExpand(false);
+              }}
+            >
+              <span
+                {...navLinkProps(page.pageLink, page.animationDelayForNavbar)}
+              >
+                {page.displayName}
+              </span>
+            </Link>
+          );
+        }
+        return null;
+      })}
+
+      <div className="expand-bottom fadeInUp" style={{animationDelay: '1s'}}>
+        <h5>A crowdsourced initiative.</h5>
+      </div>
     </div>
   );
 }

@@ -1,13 +1,15 @@
-import React, {useState, useEffect} from 'react';
-import {useLocation} from 'react-router-dom';
+import DownloadBlock from './downloadblock';
+import Footer from './footer';
+import Patients from './patients';
+
 import axios from 'axios';
 import {format, subDays} from 'date-fns';
+import React, {useState, useEffect} from 'react';
 import DatePicker from 'react-date-picker';
 import {useTranslation} from 'react-i18next';
 import * as Icon from 'react-feather';
-
-import Patients from './patients';
-import DownloadBlock from './downloadblock';
+import {useLocation} from 'react-router-dom';
+import {useEffectOnce, useLocalStorage} from 'react-use';
 
 function filterByObject(obj, filters) {
   const keys = Object.keys(filters);
@@ -24,11 +26,11 @@ function PatientDB(props) {
   const [fetched, setFetched] = useState(false);
   const [patients, setPatients] = useState([]);
   const [filteredPatients, setFilteredPatients] = useState([]);
-  const [error, setError] = useState('');
   const {pathname} = useLocation();
   const [colorMode, setColorMode] = useState('genders');
   const [scaleMode, setScaleMode] = useState(true);
   const [filterDate, setFilterDate] = useState(null);
+  const [showReminder, setShowReminder] = useLocalStorage('showReminder', true);
   const [filters, setFilters] = useState({
     detectedstate: '',
     detecteddistrict: '',
@@ -41,24 +43,25 @@ function PatientDB(props) {
     window.scrollTo(0, 0);
   }, [pathname]);
 
-  useEffect(() => {
-    async function fetchRawData() {
-      const response = await axios.get(
-        'https://thantthet.github.io/covid19-api/raw_data.json'
-      );
-      if (response.data) {
-        setPatients(response.data.raw_data.reverse());
-        setFetched(true);
-      } else {
-        setError("Couldn't fetch patient data. Try again after sometime.");
-        console.log(response);
-      }
+  useEffectOnce(() => {
+    try {
+      axios
+        .get('https://thantthet.github.io/covid19-api/raw_data.json')
+        .then((response) => {
+          setPatients(response.data.raw_data.reverse());
+          setFetched(true);
+        });
+    } catch (err) {
+      console.log(err);
     }
+  });
 
-    if (!fetched) {
-      fetchRawData();
-    }
-  }, [fetched]);
+  useEffect(() => {
+    const datePickers = document.querySelectorAll(
+      '.react-date-picker__inputGroup input'
+    );
+    datePickers.forEach((el) => el.setAttribute('readOnly', true));
+  }, []);
 
   const handleFilters = (label, value) => {
     setFilters((f) => {
@@ -103,9 +106,7 @@ function PatientDB(props) {
 
   return (
     <div className="PatientsDB">
-      {error ? <div className="alert alert-danger">{error}</div> : ''}
-
-      <div className="filters fadeInUp" style={{animationDelay: '0.5s'}}>
+      <div className="filters fadeInUp" style={{animationDelay: '0.2s'}}>
         <div className="filters-left">
           <div className="select">
             <select
@@ -114,6 +115,7 @@ function PatientDB(props) {
               onChange={(event) => {
                 handleFilters('detectedstate', event.target.value);
               }}
+              defaultValue={filters.detectedstate}
             >
               <option value="" disabled selected>
                 {t("Select State")}
@@ -137,8 +139,9 @@ function PatientDB(props) {
               onChange={(event) => {
                 handleFilters('detecteddistrict', event.target.value);
               }}
+              defaultValue={filters.detecteddistrict}
             >
-              <option value="" disabled selected>
+              <option value="" disabled>
                 Select District
               </option>
               {getSortedValues(
@@ -163,8 +166,9 @@ function PatientDB(props) {
               onChange={(event) => {
                 handleFilters('detectedcity', event.target.value);
               }}
+              defaultValue={filters.detectedcity}
             >
-              <option value="" disabled selected>
+              <option value="" disabled>
                 Select City
               </option>
               {getSortedValues(
@@ -190,8 +194,9 @@ function PatientDB(props) {
               onChange={(event) => {
                 handleFilters('detectedcity', event.target.value);
               }}
+              defaultValue={filters.detectedcity}
             >
-              <option value="" disabled selected>
+              <option value="" disabled>
                 Select City
               </option>
               {getSortedValues(
@@ -217,7 +222,13 @@ function PatientDB(props) {
               maxDate={subDays(new Date(), 1)}
               format="dd/MM/y"
               calendarIcon={<Icon.Calendar />}
-              clearIcon={<Icon.XCircle class={'calendar-close'} />}
+              inputProps={
+                (onkeydown = (e) => {
+                  e.preventDefault();
+                })
+              }
+              clearIcon={<Icon.XCircle size={16} />}
+              className={'calendar-close'}
               onChange={(date) => {
                 setFilterDate(date);
                 const fomattedDate = !!date ? format(date, 'dd/MM/yyyy') : '';
@@ -265,7 +276,7 @@ function PatientDB(props) {
               <div className="circle is-imported"></div>
               <h5 className="is-imported">{t("Imported")}</h5>
               <div className="circle"></div>
-              <h5 className="">{t("TBD")}</h5>
+              <h5 className="">{t("Unknown")}</h5>
             </div>
           )}
 
@@ -288,10 +299,11 @@ function PatientDB(props) {
               onChange={(event) => {
                 setColorMode(event.target.value);
               }}
+              defaultValue={colorMode}
             >
-              <option value="" disabled selected>
-                {t("Color modes")}
-              </option>
+              {/* <option value="" disabled>
+                Color modes
+              </option> */}
               <option value="genders">{t("Genders")}</option>
               <option value="transmission">{t("Transmission")}</option>
               <option value="nationality">{t("Nationality")}</option>
@@ -304,7 +316,6 @@ function PatientDB(props) {
       <div className="header fadeInUp" style={{animationDelay: '0.3s'}}>
         <div>
           <h1>{t('demographics.title')}</h1>
-          {/* <h3>No. of Patients: {patients.length}</h3>*/}
 
           <div className="deep-dive">
             <h5>Expand</h5>
@@ -323,7 +334,15 @@ function PatientDB(props) {
         </h6>
       </div>
 
-      <div className="reminder fadeInUp" style={{animationDelay: '1s'}}>
+      <div
+        className="reminder fadeInUp"
+        style={{animationDelay: '1s', display: showReminder ? '' : 'none'}}
+      >
+        <Icon.XCircle
+          onClick={() => {
+            setShowReminder(false);
+          }}
+        />
         <p>
         {t('demographics.reminder.line1')}
         <br/>
@@ -332,14 +351,18 @@ function PatientDB(props) {
         </p>
       </div>
 
-      <div className="patientdb-wrapper">
-        <Patients
-          patients={filteredPatients}
-          colorMode={colorMode}
-          expand={scaleMode}
-        />
-      </div>
+      {fetched && (
+        <div className="patientdb-wrapper">
+          <Patients
+            patients={filteredPatients}
+            colorMode={colorMode}
+            expand={scaleMode}
+          />
+        </div>
+      )}
+
       <DownloadBlock patients={patients} />
+      <Footer />
     </div>
   );
 }

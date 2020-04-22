@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 import {promises as fs} from 'fs';
 
 export function removeFileExtension(fileName) {
@@ -11,7 +12,7 @@ function removeUnknown(e) {
 
 export async function getStatesAndDistrictsFromAPI() {
   const stateDistrictWiseResponse = (
-    await axios.get('https://api.covid19india.org/state_district_wise.json')
+    await axios.get('https://thantthet.github.io/covid19-api/state_district_wise.json')
   ).data;
   const states = Object.keys(stateDistrictWiseResponse).filter(removeUnknown);
   const result = {};

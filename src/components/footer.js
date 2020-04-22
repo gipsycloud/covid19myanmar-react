@@ -16,6 +16,7 @@ function Footer(props) {
         <Icon.GitHub />
         <span>A fork of covid19india.org</span>
       </a>
+
       <a
         className="button excel"
         href="http://covidmyanmar.com"
@@ -29,4 +30,4 @@ function Footer(props) {
   );
 }
 
-export default Footer;
+export default React.memo(Footer);

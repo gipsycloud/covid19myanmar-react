@@ -1,10 +1,9 @@
-import React, {useState, useEffect, useRef, useCallback} from 'react';
+import {sliceTimeseriesFromEnd, formatNumber} from '../utils/commonfunctions';
+import {useResizeObserver} from '../utils/hooks';
+
 import * as d3 from 'd3';
 import moment from 'moment';
-
-import {sliceTimeseriesFromEnd} from '../utils/common-functions';
-import {useResizeObserver} from '../utils/hooks';
-import {formatNumber} from '../utils/common-functions';
+import React, {useState, useEffect, useRef, useCallback} from 'react';
 import {useTranslation} from 'react-i18next';
 
 function TimeSeries(props) {
@@ -19,6 +18,7 @@ function TimeSeries(props) {
   const [mode, setMode] = useState(props.mode);
   const [logMode, setLogMode] = useState(props.logMode);
   const [chartType, setChartType] = useState(props.type);
+  const [stateCode] = useState(props.stateCode);
   const [moving, setMoving] = useState(false);
 
   const svgRef1 = useRef();
@@ -45,7 +45,7 @@ function TimeSeries(props) {
 
   useEffect(() => {
     transformTimeSeries(props.timeseries);
-  }, [props.timeseries, lastDaysCount, transformTimeSeries]);
+  }, [stateCode, lastDaysCount, transformTimeSeries, props.timeseries]);
 
   useEffect(() => {
     setMode(props.mode);
@@ -95,11 +95,21 @@ function TimeSeries(props) {
       // Number of x-axis ticks
       const numTicksX = width < 480 ? 4 : 7;
 
-      const xAxis = (g, yScale) =>
+      const xAxis = (g) =>
         g
           .attr('class', 'x-axis')
           .call(d3.axisBottom(xScale).ticks(numTicksX))
+          .style('transform', `translateY(${chartBottom}px)`);
+
+      const xAxis2 = (g, yScale) => {
+        g.attr('class', 'x-axis2')
+          .call(d3.axisBottom(xScale).tickValues([]).tickSize(0))
+          .select('.domain')
           .style('transform', `translateY(${yScale(0)}px)`);
+
+        if (yScale(0) !== chartBottom) g.select('.domain').attr('opacity', 0.4);
+        else g.select('.domain').attr('opacity', 0);
+      };
 
       const yAxis = (g, yScale) =>
         g
@@ -184,10 +194,11 @@ function TimeSeries(props) {
           .scaleLinear()
           .clamp(true)
           .domain([
-            Math.min(
-              0,
-              d3.min(timeseries, (d) => d.dailyactive)
-            ),
+            yBuffer *
+              Math.min(
+                0,
+                d3.min(timeseries, (d) => d.dailyactive)
+              ),
             Math.max(
               1,
               yBuffer *
@@ -204,10 +215,11 @@ function TimeSeries(props) {
             .scaleLinear()
             .clamp(true)
             .domain([
-              Math.min(
-                0,
-                d3.min(timeseries, (d) => d[type])
-              ),
+              yBuffer *
+                Math.min(
+                  0,
+                  d3.min(timeseries, (d) => d[type])
+                ),
               Math.max(1, yBuffer * d3.max(timeseries, (d) => d[type])),
             ])
             .nice()
@@ -273,7 +285,8 @@ function TimeSeries(props) {
         const yScale = yScales[i];
 
         /* X axis */
-        svg.select('.x-axis').transition(t).call(xAxis, yScale);
+        svg.select('.x-axis').transition(t).call(xAxis);
+        svg.select('.x-axis2').transition(t).call(xAxis2, yScale);
         /* Y axis */
         svg.select('.y-axis').transition(t).call(yAxis, yScale);
 
@@ -398,11 +411,8 @@ function TimeSeries(props) {
   };
 
   return (
-    <div
-      className="TimeSeries-Parent fadeInUp"
-      style={{animationDelay: '2.7s'}}
-    >
-      <div className="timeseries">
+    <React.Fragment>
+      <div className="TimeSeries fadeInUp" style={{animationDelay: '2.7s'}}>
         <div className="svg-parent" ref={wrapperRef}>
           <div className="stats">
             <h5 className={`${!moving ? 'title' : ''}`}>{t("confirmed.full")}</h5>
@@ -414,6 +424,7 @@ function TimeSeries(props) {
           </div>
           <svg ref={svgRef1} preserveAspectRatio="xMidYMid meet">
             <g className="x-axis" />
+            <g className="x-axis2" />
             <g className="y-axis" />
           </svg>
         </div>
@@ -429,6 +440,7 @@ function TimeSeries(props) {
           </div>
           <svg ref={svgRef2} preserveAspectRatio="xMidYMid meet">
             <g className="x-axis" />
+            <g className="x-axis2" />
             <g className="y-axis" />
           </svg>
         </div>
@@ -444,6 +456,7 @@ function TimeSeries(props) {
           </div>
           <svg ref={svgRef3} preserveAspectRatio="xMidYMid meet">
             <g className="x-axis" />
+            <g className="x-axis2" />
             <g className="y-axis" />
           </svg>
         </div>
@@ -459,6 +472,7 @@ function TimeSeries(props) {
           </div>
           <svg ref={svgRef4} preserveAspectRatio="xMidYMid meet">
             <g className="x-axis" />
+            <g className="x-axis2" />
             <g className="y-axis" />
           </svg>
         </div>
@@ -489,8 +503,8 @@ function TimeSeries(props) {
           {t("2 Weeks")}
         </button>
       </div>
-    </div>
+    </React.Fragment>
   );
 }
 
-export default TimeSeries;
+export default React.memo(TimeSeries);

@@ -1,7 +1,8 @@
+import {getStateName} from '../../utils/commonfunctions';
+
+import moment from 'moment';
 import React from 'react';
 import {Line, defaults} from 'react-chartjs-2';
-import moment from 'moment';
-import {getStateName} from '../../utils/common-functions';
 import {useTranslation} from 'react-i18next';
 
 function AllStatesChart(props) {

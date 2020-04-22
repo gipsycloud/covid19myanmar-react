@@ -1,12 +1,14 @@
-import React, {useState, useEffect} from 'react';
-import {formatNumber} from '../utils/common-functions';
+import {formatNumber} from '../utils/commonfunctions';
+
+import React, {useState} from 'react';
+import {useEffectOnce} from 'react-use';
 import {useTranslation} from 'react-i18next';
 
 function Level(props) {
   const {t} = useTranslation();
   const [data, setData] = useState(props.data);
 
-  useEffect(() => {
+  useEffectOnce(() => {
     setData({
       active: +props.data.active,
       confirmed: +props.data.confirmed,
@@ -16,7 +18,7 @@ function Level(props) {
       deltadeaths: +props.data.deltadeaths,
       deltarecovered: +props.data.deltarecovered,
     });
-  }, [props.data]);
+  });
 
   return (
     <div className="Level">
@@ -43,7 +45,6 @@ function Level(props) {
       >
         <h5 className="heading">{t("active.full")}</h5>
         <h4>&nbsp;</h4>
-        {/* <h4>[{props.deltas ? props.deltas.confirmeddelta-(props.deltas.recovereddelta+props.deltas.deceaseddelta) >=0 ? '+'+(props.deltas.confirmeddelta-(props.deltas.recovereddelta+props.deltas.deceaseddelta)).toString() : '+0' : ''}]</h4>*/}
         <h1 className="title has-text-info">{formatNumber(data.active)}</h1>
       </div>
 
@@ -86,4 +87,4 @@ function Level(props) {
   );
 }
 
-export default Level;
+export default React.memo(Level);

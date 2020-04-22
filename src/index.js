@@ -1,20 +1,16 @@
-import React, { Suspense } from 'react';
-import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { BrowserRouter as Router } from 'react-router-dom';
-import ScrollToTop from './utils/ScrollToTop';
-import { I18nextProvider } from 'react-i18next';
+
+import React, {Suspense} from 'react';
+import ReactDOM from 'react-dom';
+
+import {I18nextProvider} from 'react-i18next';
 import i18n from './i18n';
 
 ReactDOM.render(
   <Suspense fallback={''}>
     <I18nextProvider i18n={i18n}>
-      <Router>
-        <ScrollToTop>
-          <App />
-        </ScrollToTop>
-      </Router>
+		<App />
     </I18nextProvider>
   </Suspense>,
   document.getElementById('root')

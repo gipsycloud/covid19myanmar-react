@@ -1,6 +1,6 @@
+import moment from 'moment';
 import React from 'react';
 import {Line, defaults} from 'react-chartjs-2';
-import moment from 'moment';
 import {useTranslation} from 'react-i18next';
 
 function TotalConfirmedChart(props) {

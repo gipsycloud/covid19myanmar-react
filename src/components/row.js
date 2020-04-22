@@ -1,11 +1,12 @@
-import React, {useState, useEffect, useCallback} from 'react';
-import * as Icon from 'react-feather';
 import {
   formatDate,
   formatDateAbsolute,
   formatNumber,
-} from '../utils/common-functions';
+} from '../utils/commonfunctions';
+
 import {formatDistance} from 'date-fns';
+import React, {useState, useEffect, useCallback} from 'react';
+import * as Icon from 'react-feather';
 import {Tooltip} from 'react-lightweight-tooltip';
 import {useTranslation} from 'react-i18next';
 import {Link} from 'react-router-dom';
@@ -114,10 +115,11 @@ function Row(props) {
   return (
     <React.Fragment>
       <tr
-        className={props.total ? 'state is-total' : 'state'}
+        className={`state ${props.total ? 'is-total' : ''} ${
+          props.index % 2 === 0 ? 'is-odd' : ''
+        }`}
         onMouseEnter={() => props.onHighlightState?.(state, props.index)}
         onMouseLeave={() => props.onHighlightState?.()}
-        /* onTouchStart={() => props.onHighlightState?.(state, props.index)}*/
         onClick={!props.total ? handleReveal : null}
         style={{background: props.index % 2 === 0 ? '#f8f9fa' : ''}}
       >
@@ -163,10 +165,6 @@ function Row(props) {
         <td
           style={{color: parseInt(state.active) === 0 ? '#B5B5B5' : 'inherit'}}
         >
-          {/* <span className="deltas" style={{color: '#007bff'}}>
-            {!state.delta.active==0 && <Icon.ArrowUp/>}
-            {state.delta.active>0 ? `${state.delta.active}` : ''}
-          </span>*/}
           {parseInt(state.active) === 0 ? '-' : formatNumber(state.active)}
         </td>
         <td
@@ -287,7 +285,7 @@ function Row(props) {
               return (
                 <tr
                   key={index}
-                  className={`district`}
+                  className={`district ${index % 2 === 0 ? 'is-odd' : ''}`}
                   style={{
                     display: props.reveal && !props.total ? '' : 'none',
                     background: index % 2 === 0 ? '#f8f9fa' : '',
@@ -296,9 +294,6 @@ function Row(props) {
                     props.onHighlightDistrict?.(district, state, props.index)
                   }
                   onMouseLeave={() => props.onHighlightDistrict?.()}
-                  /* onTouchStart={() =>
-                    props.onHighlightDistrict?.(district, state, props.index)
-                  }*/
                 >
                   <td style={{fontWeight: 600}}>{district}</td>
                   <td>
@@ -364,4 +359,4 @@ function Row(props) {
   );
 }
 
-export default Row;
+export default React.memo(Row);

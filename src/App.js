@@ -1,15 +1,20 @@
-import React from 'react';
-import {Route, Redirect} from 'react-router-dom';
-import {AnimatedSwitch} from 'react-router-transition';
 import {useTranslation} from 'react-i18next';
-
 import './App.scss';
 
+import DeepDive from './components/deepdive';
 import Home from './components/home';
 import Navbar from './components/navbar';
 import PatientDB from './components/patientdb';
-import DeepDive from './components/deepdive';
 import State from './components/state';
+
+import React from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  Switch,
+} from 'react-router-dom';
+import {useLocalStorage} from 'react-use';
 
 function App() {
   const {t} = useTranslation();
@@ -40,40 +45,49 @@ function App() {
       pageLink: '/state/:stateCode',
       view: State,
       displayName: t('menu.state'),
-      animationDelayForNavbar: 0.8,
+      animationDelayForNavbar: 0.7,
       showInNavbar: false,
     },
   ];
 
+  const [darkMode, setDarkMode] = useLocalStorage('darkMode', false);
+
+  React.useEffect(() => {
+    if (darkMode) {
+      document.querySelector('body').classList.add('dark-mode');
+    } else {
+      document.querySelector('body').classList.remove('dark-mode');
+    }
+  }, [darkMode]);
+
   return (
-    <div className="App">
-      <Route
-        render={({location}) => (
-          <div className="Almighty-Router">
-            <Navbar pages={pages} />
-            <Route exact path="/" render={() => <Redirect to="/" />} />
-            <AnimatedSwitch
-              atEnter={{opacity: 0}}
-              atLeave={{opacity: 0}}
-              atActive={{opacity: 5}}
-              className="switch-wrapper"
-              location={location}
-            >
-              {pages.map((page, i) => {
-                return (
-                  <Route
-                    exact
-                    path={page.pageLink}
-                    component={page.view}
-                    key={i}
-                  />
-                );
-              })}
-              <Redirect to="/" />
-            </AnimatedSwitch>
-          </div>
-        )}
-      />
+    <div className={`App ${darkMode ? 'dark-mode' : ''}`}>
+      <Router>
+        <Route
+          render={({location}) => (
+            <div className="Almighty-Router">
+              <Navbar
+                pages={pages}
+                darkMode={darkMode}
+                setDarkMode={setDarkMode}
+              />
+              <Switch location={location}>
+                {pages.map((page, index) => {
+                  return (
+                    <Route
+                      exact
+                      path={page.pageLink}
+                      component={page.view}
+                      key={index}
+                    />
+                  );
+                })}
+                <Redirect to="/" />
+              </Switch>
+            </div>
+          )}
+        />
+      </Router>
     </div>
   );
 }
