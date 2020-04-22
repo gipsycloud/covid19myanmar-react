@@ -116,13 +116,13 @@ function PatientDB(props) {
               }}
             >
               <option value="" disabled selected>
-                Select State
+                {t("Select State")}
               </option>
               {getSortedValues(patients, 'detectedstate').map(
                 (state, index) => {
                   return (
                     <option key={index} value={state}>
-                      {state === '' ? 'All' : state}
+                      {state === '' ? t('All') : t(`statenames.${state.toLowerCase()}`)}
                     </option>
                   );
                 }
@@ -149,7 +149,7 @@ function PatientDB(props) {
               ).map((district, index) => {
                 return (
                   <option key={index} value={district}>
-                    {district === '' ? 'All' : district}
+                    {district === '' ? t('All') : district}
                   </option>
                 );
               })}
@@ -176,7 +176,7 @@ function PatientDB(props) {
               ).map((city, index) => {
                 return (
                   <option key={index} value={city}>
-                    {city === '' ? 'All' : city}
+                    {city === '' ? t('All') : city}
                   </option>
                 );
               })}
@@ -250,22 +250,22 @@ function PatientDB(props) {
           {colorMode === 'genders' && (
             <div className="legend-left">
               <div className="circle is-female"></div>
-              <h5 className="is-female">Female</h5>
+              <h5 className="is-female">{t("Female")}</h5>
               <div className="circle is-male"></div>
-              <h5 className="is-male">Male</h5>
+              <h5 className="is-male">{t("Male")}</h5>
               <div className="circle"></div>
-              <h5 className="">Unknown</h5>
+              <h5 className="">{t("Unknown")}</h5>
             </div>
           )}
 
           {colorMode === 'transmission' && (
             <div className="legend-left">
               <div className="circle is-local"></div>
-              <h5 className="is-local">Local</h5>
+              <h5 className="is-local">{t("Local")}</h5>
               <div className="circle is-imported"></div>
-              <h5 className="is-imported">Imported</h5>
+              <h5 className="is-imported">{t("Imported")}</h5>
               <div className="circle"></div>
-              <h5 className="">TBD</h5>
+              <h5 className="">{t("TBD")}</h5>
             </div>
           )}
 
@@ -290,11 +290,11 @@ function PatientDB(props) {
               }}
             >
               <option value="" disabled selected>
-                Color modes
+                {t("Color modes")}
               </option>
-              <option value="genders">Genders</option>
-              <option value="transmission">Transmission</option>
-              <option value="nationality">Nationality</option>
+              <option value="genders">{t("Genders")}</option>
+              <option value="transmission">{t("Transmission")}</option>
+              <option value="nationality">{t("Nationality")}</option>
               {/* <option value="age">Age</option>*/}
             </select>
           </div>

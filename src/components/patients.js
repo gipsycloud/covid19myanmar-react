@@ -2,8 +2,11 @@ import React, {useState, useEffect, useCallback} from 'react';
 import {parse} from 'date-fns';
 import * as Icon from 'react-feather';
 import PatientsView from './patientsview';
+import {useTranslation} from 'react-i18next';
 
 function Patients(props) {
+  const {t} = useTranslation();
+
   const [patients, setPatients] = useState(props.patients);
   const [patient, setPatient] = useState(props.patients.slice(-1));
   const [logs, setLogs] = useState({});
@@ -137,10 +140,10 @@ function Patients(props) {
             </div>
 
             <div className="meta">
-              <h5>Date Announced</h5>
+              <h5>{t("Date Announced")}</h5>
               <h3>{patient.dateannounced ? patient.dateannounced : '?'}</h3>
 
-              <h5>Contracted from</h5>
+              <h5>{t("Contracted from")}</h5>
               <h3 className="contracted-from">
                 {patient.contractedfromwhichpatientsuspected
                   ? patient.contractedfromwhichpatientsuspected.split(',').map((patientid, i) => {
@@ -149,52 +152,52 @@ function Patients(props) {
                   : '?'}
               </h3>
 
-              <h5>Detected City</h5>
+              <h5>{t("Detected City")}</h5>
               <h3>{patient.detectedcity ? patient.detectedcity : '?'}</h3>
 
-              <h5>Detected District</h5>
+              <h5>{t("Detected District")}</h5>
               <h3>
                 {patient.detecteddistrict ? patient.detecteddistrict : '?'}
               </h3>
 
-              <h5>Detected State</h5>
+              <h5>{t("Detected State")}</h5>
               <h3>{patient.detectedstate ? patient.detectedstate : '?'}</h3>
 
-              <h5>Nationality</h5>
+              <h5>{t("Nationality")}</h5>
               <h3>{patient.nationality ? patient.nationality : '?'}</h3>
 
-              <h5>Age</h5>
+              <h5>{t("Age")}</h5>
               <h3>{patient.agebracket ? patient.agebracket : '?'}</h3>
 
-              <h5>Gender</h5>
+              <h5>{t("Gender")}</h5>
               <h3>{patient.gender ? patient.gender : '?'}</h3>
 
-              <h5>Type of transmission</h5>
+              <h5>{t("Type of transmission")}</h5>
               <h3>
                 {patient.typeoftransmission ? patient.typeoftransmission : '?'}
               </h3>
             </div>
 
             <div className="notes">
-              <h5>Notes</h5>
+              <h5>{t("Notes")}</h5>
               <h3>{patient.notes}</h3>
             </div>
 
-            <h5>Source 1</h5>
+            <h5>{t("Source 1")}</h5>
             <div className="link">
               <a href={patient.source1} target="_noblank">
                 {patient.source1}
               </a>
             </div>
 
-            <h5>Source 2</h5>
+            <h5>{t("Source 2")}</h5>
             <div className="link">
               <a href={patient.source2} target="_noblank">
                 {patient.source2}
               </a>
             </div>
 
-            <h5>Source 3</h5>
+            <h5>{t("Source 3")}</h5>
             <div className="link">
               <a href={patient.source3} target="_noblank">
                 {patient.source3}

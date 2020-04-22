@@ -3177,7 +3177,7 @@ body.modal-open {
       display: flex;
       flex-direction: column;
       flex-wrap: wrap;
-      height: 10rem;
+      height: 11rem;
       & > * {
         width: 10rem;
       }
@@ -3398,6 +3398,7 @@ body.modal-open {
   .legend-left {
     display: flex;
     flex-direction: row;
+    align-items: center;
   }
 
   select {
