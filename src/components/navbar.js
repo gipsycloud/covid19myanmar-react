@@ -131,11 +131,11 @@ function Expand({expand, pages, setExpand}) {
         return null;
       })}
       
-      <div className="expand-language">
+      <div className="expand-language fadeInUp" style={{animationDelay: '0.6s'}}>
         <h5>Change Language</h5>
         <LanguageSwitcher />
       </div>
-      <div className="expand-bottom fadeInUp" style={{animationDelay: '1s'}}>
+      <div className="expand-bottom fadeInUp" style={{animationDelay: '0.7s'}}>
         <h5>A crowdsourced initiative.</h5>
       </div>
     </div>
