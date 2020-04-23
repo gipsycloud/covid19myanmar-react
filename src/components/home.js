@@ -43,7 +43,7 @@ function Home(props) {
 
   useEffectOnce(() => {
     axios
-      .get('https://thantthet.github.io/covid19-api/log.json')
+      .get('https://thantthet.github.io/covid19-api/updatelog/log.json')
       .then((response) => {
         const lastTimestamp = response.data
           .slice()
