@@ -218,6 +218,33 @@ h6 {
     color: inherit;
   }
 
+  .navbar-language {
+    select {
+      appearance: none;
+      background-color: #eee;
+      background-image:
+        linear-gradient(45deg, transparent 50%, #808080 50%),
+        linear-gradient(135deg, #808080 50%, transparent 50%);
+      background-position: calc(100% - 13px) 50%, calc(100% - 8px) 50%;
+      background-size: 5px 5px, 5px 5px;
+      background-repeat: no-repeat;
+      border: 2px solid #e8e8e9;
+      border-radius: 4px;
+      font-family: 'archia';
+      font-weight: 900;
+      margin-top: 1rem;
+      padding: 0.5rem;
+      margin-left: -1px;
+      width: auto;
+      color: $gray;
+      cursor: pointer;
+  
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
   .navbar-left {
     font-family: 'archia';
     font-weight: 600;
@@ -3779,30 +3806,6 @@ body.modal-open {
     z-index: 99999;
     .navbar-language {
       order: 0;
-      select {
-        appearance: none;
-        background-color: #eee;
-        background-image:
-          linear-gradient(45deg, transparent 50%, #808080 50%),
-          linear-gradient(135deg, #808080 50%, transparent 50%);
-        background-position: calc(100% - 13px) 50%, calc(100% - 8px) 50%;
-        background-size: 5px 5px, 5px 5px;
-        background-repeat: no-repeat;
-        border: 2px solid #e8e8e9;
-        border-radius: 4px;
-        font-family: 'archia';
-        font-weight: 900;
-        margin-top: 1rem;
-        padding: 0.5rem;
-        margin-left: -1px;
-        width: auto;
-        color: $gray;
-        cursor: pointer;
-    
-        &:focus {
-          outline: none;
-        }
-      }
     }
     .navbar-left {
       order: 4;
@@ -3819,7 +3822,7 @@ body.modal-open {
 
     .navbar-middle {
       text-align: center;
-      width: 2.9rem;
+      width: 3.2rem;
       font-size: 0.6rem;
       word-wrap: break-word;
       order: 1;
@@ -3856,7 +3859,7 @@ body.modal-open {
       width: 15rem;
       top: 0;
       background: $gray-light-opaque;
-      padding-top: 9.7rem;
+      padding-top: 9rem;
       padding-left: 0;
       border-right: solid 2px $gray-light-opaque;
       z-index: -1 !important;
