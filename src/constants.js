@@ -90,11 +90,11 @@ export const MAP_META = {
     mapType: MAP_TYPES.STATE,
     graphObjectName: 'shan',
   },
-  Tanintaryi: {
-    name: 'Tanintaryi',
-    geoDataFile: `${MAPS_DIR}/tanintaryi.json`,
+  Tanintharyi: {
+    name: 'Tanintharyi',
+    geoDataFile: `${MAPS_DIR}/tanintharyi.json`,
     mapType: MAP_TYPES.STATE,
-    graphObjectName: 'tanintaryi',
+    graphObjectName: 'tanintharyi',
   },
   Yangon: {
     name: 'Yangon',
