@@ -1,4 +1,4 @@
-import {defaultOptions, xAxisDefaults, formatNumber} from './chart-defaults';
+import {defaultOptions, xAxisDefaults} from './chart-defaults';
 
 import deepmerge from 'deepmerge';
 import React from 'react';
