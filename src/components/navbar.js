@@ -4,6 +4,7 @@ import * as Icon from 'react-feather';
 import {Link} from 'react-router-dom';
 import {useEffectOnce, useLockBodyScroll} from 'react-use';
 import LanguageSwitcher from './languageswitcher';
+import {useTranslation} from 'react-i18next';
 
 const navLinkProps = (path, animationDelay) => ({
   className: `fadeInUp ${window.location.pathname === path ? 'focused' : ''}`,
@@ -19,6 +20,7 @@ const activeNavIcon = (path) => ({
 });
 
 function Navbar({pages, darkMode, setDarkMode}) {
+  const {t} = useTranslation();
   const [expand, setExpand] = useState(false);
   useLockBodyScroll(expand);
 
@@ -63,7 +65,7 @@ function Navbar({pages, darkMode, setDarkMode}) {
           }
         }}
       >
-        {window.innerWidth < 769 && <span>{expand ? 'Close' : 'Menu'}</span>}
+        {window.innerWidth < 769 && <span>{expand ? t('Close') : t('Menu')}</span>}
         {window.innerWidth > 769 && (
           <React.Fragment>
             <span>

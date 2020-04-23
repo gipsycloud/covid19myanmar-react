@@ -27,6 +27,8 @@
   "1 Month": "1 Month",
   "Spread Trends": "Spread Trends",
   "States Affected": "{{count}} States/UTS Affected",
+  "Menu": "Menu",
+  "Close": "Close",
   "search": {
     "info": "Search your city, resources, etc"
   },
