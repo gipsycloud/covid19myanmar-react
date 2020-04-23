@@ -28,7 +28,7 @@
   "Spread Trends": "သၢႆငၢႆတိတ်းၸပ်း",
   "Map": "ႁၢင်ႈၽႅၼ်ႇလိၼ် {{name}}",
   "All States": "တင်းမိူင်း",
-  "States Affected": "လႆႈပဵၼ်ဝႆႉ တီႈ ၸႄႈမိူင်း ၸႄႈတိူင်း {{count}} ဢၼ်",
+  "States Affected": "လႆႈပဵၼ်ဝႆႉ တီႈ ၸႄႈမိူင်း ၸႄႈတိူင်း {{count, numeric}} ဢၼ်",
   "Close": "ဢိုတ်း",
   "Menu": "သဵၼ်ႈၵၢၼ်",
   "search": {
