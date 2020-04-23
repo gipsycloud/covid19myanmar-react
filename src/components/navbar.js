@@ -24,9 +24,6 @@ function Navbar({pages, darkMode, setDarkMode}) {
 
   return (
     <div className="Navbar">
-      <div className="navbar-language">
-        <LanguageSwitcher />
-      </div>
       <div
         className="navbar-left"
         onClick={() => setDarkMode((prevMode) => !prevMode)}
@@ -133,7 +130,11 @@ function Expand({expand, pages, setExpand}) {
         }
         return null;
       })}
-
+      
+      <div className="expand-language">
+        <h5>Change Language</h5>
+        <LanguageSwitcher />
+      </div>
       <div className="expand-bottom fadeInUp" style={{animationDelay: '1s'}}>
         <h5>A crowdsourced initiative.</h5>
       </div>

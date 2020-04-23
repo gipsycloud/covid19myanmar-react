@@ -11,7 +11,7 @@ export default function LanguageSwitcher() {
   };
 
   return (
-    <div className="select-dropdown">
+    <div className="language-switcher select-dropdown">
       <select onChange={onLanguageChange} aria-label={t('Select Language')} value={i18n.language}>
         {Object.entries(locales).map(([key, lang]) => (
           <option key={key} value={key}>

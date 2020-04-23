@@ -153,33 +153,6 @@ h6 {
     text-decoration: none;
   }
 
-  .navbar-language {
-    select {
-      appearance: none;
-      background-color: #eee;
-      background-image:
-        linear-gradient(45deg, transparent 50%, #808080 50%),
-        linear-gradient(135deg, #808080 50%, transparent 50%);
-      background-position: calc(100% - 13px) 50%, calc(100% - 8px) 50%;
-      background-size: 5px 5px, 5px 5px;
-      background-repeat: no-repeat;
-      border: 2px solid #e8e8e9;
-      border-radius: 4px;
-      font-family: 'archia';
-      font-weight: 900;
-      margin-top: 1rem;
-      padding: 0.5rem;
-      margin-left: -1px;
-      width: auto;
-      color: $gray;
-      cursor: pointer;
-  
-      &:focus {
-        outline: none;
-      }
-    }
-  }
-
   .navbar-left {
     color: $gray;
     cursor: pointer;
@@ -246,6 +219,47 @@ h6 {
           color: $pblue;
           padding: .25rem;
         }
+      }
+    }
+    
+    .expand-language {
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center;
+
+      h5 {
+        order: 2;
+      }
+      .language-switcher {
+        order: 1;
+        padding-left: 1rem;
+      }
+
+      select {
+        appearance: none;
+        background-color: #eee;
+        background-image:
+          linear-gradient(45deg, transparent 50%, #808080 50%),
+          linear-gradient(135deg, #808080 50%, transparent 50%);
+        background-position: calc(100% - 13px) 50%, calc(100% - 8px) 50%;
+        background-size: 5px 5px, 5px 5px;
+        background-repeat: no-repeat;
+        border: 2px solid #e8e8e9;
+        border-radius: 4px;
+        font-family: 'archia';
+        font-weight: 900;
+        padding: 0.5rem;
+        width: auto;
+        color: $gray;
+        cursor: pointer;
+    
+        &:focus {
+          outline: none;
+        }
+      }
+
+      &:hover {
+        background: none;
       }
     }
 
@@ -3894,9 +3908,6 @@ footer {
     min-width: 5rem;
     position: fixed;
     z-index: 99999;
-    .navbar-language {
-      order: 0;
-    }
     .navbar-left {
       order: 4;
       margin-top: auto;
@@ -3953,7 +3964,7 @@ footer {
       border-right: solid 2px $gray-light-opaque;
       flex-direction: column;
       padding-left: 0;
-      padding-top: 9rem;
+      padding-top: 5.5rem;
       top: 0;
       width: 15rem;
       z-index: -1 !important;
