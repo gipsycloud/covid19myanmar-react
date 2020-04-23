@@ -140,5 +140,19 @@
   "Notes": "Notes",
   "Source 1": "Source 1",
   "Source 2": "Source 2",
-  "Source 3": "Source 3"
+  "Source 3": "Source 3",
+  "Type of transmission": "Type of transmission",
+  "Jan": "Jan",
+  "Feb": "Feb",
+  "Mar": "Mar",
+  "Apr": "Apr",
+  "May": "May",
+  "Jun": "Jun",
+  "Jul": "Jul",
+  "Aug": "Aug",
+  "Sep": "Sep",
+  "Oct": "Oct",
+  "Nov": "Nov",
+  "Dec": "Dec",
+  "absoluteDate": "{{day}} {{month}}, {{time}} MMT"
 }

@@ -1,4 +1,5 @@
 import {STATE_CODES} from '../constants';
+import i18n from 'i18next';
 
 import moment from 'moment';
 
@@ -30,10 +31,14 @@ export const formatDate = (unformattedDate) => {
 };
 
 export const formatDateAbsolute = (unformattedDate) => {
-  const day = unformattedDate.slice(0, 2);
+  const day = Number(unformattedDate.slice(0, 2));
   const month = unformattedDate.slice(3, 5);
   const time = unformattedDate.slice(11);
-  return `${day} ${months[month]}, ${time.slice(0, 5)} MMT`;
+  return i18n.t(`absoluteDate`, {
+    time: time.slice(0, 5),
+    day: day,
+    month: i18n.t(months[month]),
+  });
 };
 
 const validateCTS = (data = []) => {
