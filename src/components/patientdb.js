@@ -28,7 +28,7 @@ function PatientDB(props) {
   const [filteredPatients, setFilteredPatients] = useState([]);
   const {pathname} = useLocation();
   const [colorMode, setColorMode] = useState('genders');
-  const [scaleMode, setScaleMode] = useState(true);
+  const [scaleMode, setScaleMode] = useState(false);
   const [filterDate, setFilterDate] = useState(null);
   const [showReminder, setShowReminder] = useLocalStorage('showReminder', true);
   const [message, setMessage] = useState(false);

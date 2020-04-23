@@ -73,7 +73,7 @@ function TotalConfirmedChart(props) {
         deepmerge(yAxisDefaults, {
           scaleLabel: {
             display: false,
-            labelString: 'Total Cases',
+            labelString: t('Total Cases'),
           },
         }),
       ],
@@ -121,7 +121,7 @@ function TotalConfirmedChart(props) {
         },
         scaleLabel: {
           display: false,
-          labelString: 'Total Cases',
+          labelString: t('Total Cases'),
         },
       },
     ];

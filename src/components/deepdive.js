@@ -47,11 +47,11 @@ function DeepDive() {
     <div className="cards-container">
       <section className="cards">
         <div className="card fadeInUp" style={{animationDelay: '0.7s'}}>
-          <TotalConfirmedChart title="Total Cases" timeseries={timeseries} />
+          <TotalConfirmedChart title={t("Total Cases")} timeseries={timeseries} />
         </div>
 
         <div className="card fadeInUp" style={{animationDelay: '0.7s'}}>
-          <DailyConfirmedChart title="Daily Cases" timeseries={timeseries} />
+          <DailyConfirmedChart title={t("Daily Cases")} timeseries={timeseries} />
         </div>
 
         <div
@@ -59,14 +59,14 @@ function DeepDive() {
           style={{animationDelay: '0.7s'}}
         >
           <AllStatesChart
-            title="Total Cases by State"
+            title={t("Total Cases by State")}
             data={statesTimeSeries}
           />
         </div>
 
         <div className="card fadeInUp" style={{animationDelay: '0.7s'}}>
           <GrowthTrendChart
-            title="States - Growth Trend"
+            title={t("States - Growth Trend")}
             data={statesTimeSeries}
           />
         </div>
@@ -76,11 +76,11 @@ function DeepDive() {
         </div>
 
         <div className="card fadeInUp" style={{animationDelay: '0.7s'}}>
-          <AgeChart title="Patients by Age" data={rawData} />
+          <AgeChart title={t("Patients by Age")} data={rawData} />
         </div>
 
         <div className="card fadeInUp" style={{animationDelay: '0.7s'}}>
-          <NationalityChart title="Patients by  Nationality" data={rawData} />
+          <NationalityChart title={t("Patients by  Nationality")} data={rawData} />
         </div>
       </section>
     </div>
