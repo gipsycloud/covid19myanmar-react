@@ -1,6 +1,4 @@
 {
-  "Deaths": "သေဆုံးမှုများ",
-  "Know More": "ပိုသိရှိရန်",
   "ago": " လွန်ခဲ့သော {{time}}",
   "Select Language": "ဘာသာစကားရွေးပါ",
   "map": {
@@ -29,8 +27,6 @@
   "Map": "{{name}} မြေပုံ",
   "All States": "တစ်ပြည်လုံး",
   "States Affected": "တိုင်း/ပြည်နယ် {{count, numeric}} ခုတွင်ဖြစ်ပွား",
-  "Close": "ပိတ်",
-  "Menu": "Menu",
   "search": {
     "info": "မြို့ နှင့် အချက်အလက်များ၊ စသည်တို့ကို ရှာပါ..."
   },
@@ -108,25 +104,16 @@
   "District": "ခရိုင်",
   "Back": "နောက်သို့",
   "Yesterday": "မနေ့က",
-  "Patient Age": "အသက်",
-  "States - Total Cases": "တိုင်း/ပြည်နယ် - ကူးစက်မှုအားလုံး",
-  "Myanmar - Daily Cases": "မြန်မာနိုင်ငံ - တစ်ရက်စီ",
-  "Myanmar - Total Cases": "မြန်မာနိုင်ငံ - ကူးစက်မှုအားလုံး",
   "Patient Gender": "လိင်",
-  "Patient Nationality": "နိုင်ငံသား",
   "Male": "ကျား",
   "Female": "မ",
-  "Awaiting Details": "အချက်အလက်စောင့်နေဆဲ",
-  "awaiting details for": "လူနာ {{count, numeric}} ဦး၏အချက်အလက်ကိုစောင့်နေဆဲ",
   "Toggle Selection": "Toggle Selection",
   "Unknown": "မသိရသေး",
   "Local": "ပြည်တွင်းကူးစက်",
   "Imported": "ပြည်ပပြန်",
-  "TBD": "မသိရသေး",
   "Genders": "လိင်",
   "Transmission": "ကူးစက်ပုံ",
   "Nationality": "နိုင်ငံသား",
-  "Color modes": "အရောင်ပြပုံ",
   "Select State": "ပြည်နယ်/တိုင်းရွေးပါ",
   "All": "အားလုံး",
   "Date Announced": "ကြေညာသည့်ရက်စွဲ",
@@ -153,5 +140,12 @@
   "Oct": "အောက်တိုဘာ",
   "Nov": "နိုဝင်ဘာ",
   "Dec": "ဒီဇင်ဘာ",
-  "absoluteDate": "{{day, numeric}} {{month}}၊ {{time}} အချိန်"
+  "absoluteDate": "{{day, numeric}} {{month}}၊ {{time}} အချိန်",
+  "Sample size number of patients": "နမူနာအရွယ်အစား - လူနာအရေအတွက် {{size, numeric}} ",
+  "Total Cases": "အတည်ပြုလူနာများ",
+  "Daily Cases": "တစ်နေ့ချင်း အတည်ပြုလူနာ",
+  "Total Cases by State": "ပြည်နယ်/တိုင်းအလိုက် အတည်ပြုလူနာပေါင်း",
+  "States - Growth Trend": "တိုးပွားနှုန်း",
+  "Patients by Age": "လူနာအသက်",
+  "Patients by  Nationality": "လူနာ၏နိုင်ငံသား"
 }

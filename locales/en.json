@@ -1,6 +1,4 @@
 {
-  "Know More": "Know More",
-  "Deaths": "Deaths",
   "ago": "{{time}} ago",
   "Select Language": "Select Language",
   "map": {
@@ -29,8 +27,6 @@
   "1 Month": "1 Month",
   "Spread Trends": "Spread Trends",
   "States Affected": "{{count}} States/UTS Affected",
-  "Menu": "Menu",
-  "Close": "Close",
   "search": {
     "info": "Search your city, resources, etc"
   },
@@ -109,25 +105,16 @@
   "District": "District",
   "Back": "Back",
   "Yesterday": "Yesterday",
-  "awaiting details for": "Awaiting details for {{count}} patients",
   "Toggle Selection": "Toggle Selection",
-  "Awaiting Details": "Awaiting Details",
   "Female": "Female",
   "Male": "Male",
-  "Myanmar - Daily Cases": "Myanmar - Daily Cases",
-  "Myanmar - Total Cases": "Myanmar - Total Cases",
-  "Patient Age": "Patient Age",
   "Patient Gender": "Patient Gender",
-  "Patient Nationality": "Patient Nationality",
-  "States - Total Cases": "States - Total Cases",
   "All": "All",
-  "Color modes": "Color modes",
   "Genders": "Genders",
   "Imported": "Imported",
   "Local": "Local",
   "Nationality": "Nationality",
   "Select State": "Select State",
-  "TBD": "TBD",
   "Transmission": "Transmission",
   "Unknown": "Unknown",
   "Age": "Age",
@@ -154,5 +141,12 @@
   "Oct": "Oct",
   "Nov": "Nov",
   "Dec": "Dec",
-  "absoluteDate": "{{day}} {{month}}, {{time}} MMT"
+  "absoluteDate": "{{day}} {{month}}, {{time}} MMT",
+  "Sample size number of patients": "Sample size: {{size, numeric}} patients",
+  "Total Cases": "Total Cases",
+  "Daily Cases": "Daily Cases",
+  "Total Cases by State": "Total Cases by State",
+  "Patients by  Nationality": "Patients by  Nationality",
+  "Patients by Age": "Patients by Age",
+  "States - Growth Trend": "States - Growth Trend"
 }
