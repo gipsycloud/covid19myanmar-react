@@ -153,5 +153,6 @@
   "Oct": "အောက်တိုဘာ",
   "Nov": "နိုဝင်ဘာ",
   "Dec": "ဒီဇင်ဘာ",
-  "absoluteDate": "{{day, numeric}} {{month}}၊ {{time}} အချိန်"
+  "absoluteDate": "{{day, numeric}} {{month}}၊ {{time}} အချိန်",
+  "Sample size number of patients": "နမူနာအရွယ်အစား - လူနာအရေအတွက် {{size, numeric}} "
 }

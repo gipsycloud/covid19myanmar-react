@@ -19,7 +19,7 @@ const months = {
 };
 
 export const getStateName = (code) => {
-  return STATE_CODES[code.toUpperCase()];
+  return i18n.t(`statenames.${STATE_CODES[code.toUpperCase()].toLowerCase()}`);
 };
 
 export const formatDate = (unformattedDate) => {

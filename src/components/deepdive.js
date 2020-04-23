@@ -2,6 +2,7 @@ import AgeChart from './Charts/agechart';
 import AllStatesChart from './Charts/allstates';
 import DailyConfirmedChart from './Charts/dailyconfirmedchart';
 import GenderChart from './Charts/genderchart';
+import GrowthTrendChart from './Charts/growthtrendchart';
 import NationalityChart from './Charts/nationalitychart';
 import TotalConfirmedChart from './Charts/totalconfirmedchart';
 
@@ -9,7 +10,7 @@ import axios from 'axios';
 import React, {useState, useEffect} from 'react';
 import {useTranslation} from 'react-i18next';
 
-function DeepDive(props) {
+function DeepDive() {
   const {t} = useTranslation();
   const [fetched, setFetched] = useState(false);
   const [timeseries, setTimeseries] = useState([]);
@@ -46,22 +47,26 @@ function DeepDive(props) {
     <div className="cards-container">
       <section className="cards">
         <div className="card fadeInUp" style={{animationDelay: '0.7s'}}>
-          <TotalConfirmedChart
-            title={t("Myanmar - Total Cases")}
-            timeseries={timeseries}
-          />
+          <TotalConfirmedChart title="Total Cases" timeseries={timeseries} />
         </div>
 
         <div className="card fadeInUp" style={{animationDelay: '0.7s'}}>
-          <DailyConfirmedChart
-            title={t("Myanmar - Daily Cases")}
-            timeseries={timeseries}
-          />
+          <DailyConfirmedChart title="Daily Cases" timeseries={timeseries} />
         </div>
 
-        <div className="card fadeInUp" style={{animationDelay: '0.7s'}}>
+        <div
+          className="card card-big fadeInUp"
+          style={{animationDelay: '0.7s'}}
+        >
           <AllStatesChart
-            title={t("States - Total Cases")}
+            title="Total Cases by State"
+            data={statesTimeSeries}
+          />
+        </div>
+
+        <div className="card fadeInUp" style={{animationDelay: '0.7s'}}>
+          <GrowthTrendChart
+            title="States - Growth Trend"
             data={statesTimeSeries}
           />
         </div>
@@ -71,11 +76,11 @@ function DeepDive(props) {
         </div>
 
         <div className="card fadeInUp" style={{animationDelay: '0.7s'}}>
-          <AgeChart title={t("Patient Age")} data={rawData} />
+          <AgeChart title="Patients by Age" data={rawData} />
         </div>
 
         <div className="card fadeInUp" style={{animationDelay: '0.7s'}}>
-          <NationalityChart title={t("Patient Nationality")} data={rawData} />
+          <NationalityChart title="Patients by  Nationality" data={rawData} />
         </div>
       </section>
     </div>

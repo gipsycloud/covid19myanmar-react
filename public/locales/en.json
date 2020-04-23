@@ -154,5 +154,6 @@
   "Oct": "Oct",
   "Nov": "Nov",
   "Dec": "Dec",
-  "absoluteDate": "{{day}} {{month}}, {{time}} MMT"
+  "absoluteDate": "{{day}} {{month}}, {{time}} MMT",
+  "Sample size number of patients": "Sample size: {{size, numeric}} patients"
 }
