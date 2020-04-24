@@ -3,8 +3,6 @@ import {formatDistance, format} from 'date-fns';
 import React, {useState} from 'react';
 import {useEffectOnce} from 'react-use';
 
-let currentDate = new Date();
-
 function Updates(props) {
   const [updates, setUpdates] = useState([]);
 
@@ -19,6 +17,8 @@ function Updates(props) {
       });
   });
 
+  let currentDate = new Date();
+  
   return (
     <div className="updates">
       <div className="updates-header">
