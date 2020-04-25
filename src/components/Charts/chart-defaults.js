@@ -1,5 +1,6 @@
 import deepmerge from 'deepmerge';
 import {defaults} from 'react-chartjs-2';
+import i18n from 'i18next';
 
 defaults.global = deepmerge(defaults.global, {
   defaultFontFamily: 'Archia',
@@ -47,7 +48,7 @@ defaults.global = deepmerge(defaults.global, {
 });
 
 const formatNumber = (number) =>
-  'Intl' in window ? new Intl.NumberFormat('my-MM').format(number) : number;
+  'Intl' in window ? new Intl.NumberFormat(i18n.language).format(number) : number;
 
 const defaultOptions = {
   responsive: true,
