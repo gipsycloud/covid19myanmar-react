@@ -1,4 +1,5 @@
 import {
+  localizedStateName,
   formatDate,
   formatDateAbsolute,
   formatNumber,
@@ -121,7 +122,7 @@ function Row(props) {
               <Icon.ChevronDown />
             </span>
             <span className="actual__title-wrapper">
-              {t(`statenames.${state.state.toLowerCase()}`)}
+              {localizedStateName(state.state)}
               {state.statenotes && (
                 <span onClick={handleTooltip}>
                   <span

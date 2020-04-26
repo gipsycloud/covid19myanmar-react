@@ -18,8 +18,12 @@ const months = {
   '12': 'Dec',
 };
 
+export const localizedStateName = (name) => {
+  return i18n.t(`statenames.${name.toLowerCase()}`);
+};
+
 export const getStateName = (code) => {
-  return i18n.t(`statenames.${STATE_CODES[code.toUpperCase()].toLowerCase()}`);
+  return localizedStateName(STATE_CODES[code.toUpperCase()]);
 };
 
 export const formatDate = (unformattedDate) => {

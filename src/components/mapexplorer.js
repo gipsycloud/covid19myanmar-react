@@ -1,7 +1,7 @@
 import ChoroplethMap from './choropleth';
 
 import {MAP_TYPES, MAP_META} from '../constants';
-import {formatDate, formatNumber} from '../utils/commonfunctions';
+import {localizedStateName, formatDate, formatNumber} from '../utils/commonfunctions';
 
 import {formatDistance} from 'date-fns';
 import React, {useState, useEffect, useMemo, useCallback} from 'react';
@@ -268,7 +268,7 @@ function MapExplorer({
 
       <div className="meta fadeInUp" style={{animationDelay: '2.4s'}}>
         <h2 className={`${mapOption !== 'confirmed' ? mapOption : ''}`}>
-          {currentHoveredRegion.name}
+          {currentMap.mapType === MAP_TYPES.COUNTRY ? localizedStateName(currentHoveredRegion.name) : currentHoveredRegion.name }
         </h2>
         {currentHoveredRegion.lastupdatedtime && (
           <div className="last-update">
