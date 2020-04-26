@@ -9,8 +9,10 @@ import deepmerge from 'deepmerge';
 import moment from 'moment';
 import React from 'react';
 import {Bar, defaults} from 'react-chartjs-2';
+import {useTranslation} from 'react-i18next';
 
 function DailyConfirmedChart(props) {
+  const {t} = useTranslation();
   const dates = [];
   const confirmed = [];
   const recovered = [];
@@ -34,17 +36,17 @@ function DailyConfirmedChart(props) {
     datasets: [
       {
         data: recovered,
-        label: 'Recovered',
+        label: t('recovered.full'),
         backgroundColor: '#7ebf80',
       },
       {
         data: deceased,
-        label: 'Deceased',
+        label: t('deceased.full'),
         backgroundColor: '#6c757d',
       },
       {
         data: confirmed,
-        label: 'Confirmed',
+        label: t('confirmed.full'),
         backgroundColor: '#ff6862',
       },
     ],
