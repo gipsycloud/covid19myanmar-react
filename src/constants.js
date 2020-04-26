@@ -105,7 +105,7 @@ export const MAP_META = {
 };
 
 export const STATE_CODES = {
-  "MM-07": 'Ayayarwady',
+  "MM-07": 'Ayeyarwady',
   "MM-02": 'Bago',
   "MM-14": 'Chin',
   "MM-11": 'Kachin',
@@ -118,7 +118,7 @@ export const STATE_CODES = {
   "MM-16": 'Rakhine',
   "MM-01": 'Sagaing',
   "MM-17": 'Shan',
-  "MM-05": 'Tanintaryi',
+  "MM-05": 'Tanintharyi',
   "MM-06": 'Yangon',
 };
 
