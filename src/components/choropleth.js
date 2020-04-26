@@ -242,7 +242,7 @@ function ChoroplethMap({
       const paths = d3.selectAll('.path-region');
       paths.classed('map-hover', (d, i, nodes) => {
         const propertyField =
-          'district' in d.properties
+          propertyFieldMap['state'] in d.properties
             ? propertyFieldMap['state']
             : propertyFieldMap['country'];
         if (name === d.properties[propertyField]) {
