@@ -7,9 +7,9 @@ import {
 import {formatDistance} from 'date-fns';
 import React, {useState, useEffect, useCallback} from 'react';
 import * as Icon from 'react-feather';
-import {Tooltip} from 'react-lightweight-tooltip';
 import {useTranslation} from 'react-i18next';
 import {Link} from 'react-router-dom';
+import ReactTooltip from 'react-tooltip';
 
 function Row(props) {
   const {t} = useTranslation();
@@ -34,25 +34,6 @@ function Row(props) {
     setDistricts(props.districts);
     setSortedDistricts(props.districts);
   }, [props.districts]);
-
-  const tooltipStyles = {
-    tooltip: {
-      background: '#000',
-      borderRadius: '10px',
-      fontSize: '.8em',
-      left: '250%',
-      opacity: 0.65,
-    },
-    wrapper: {
-      cursor: 'cursor',
-      display: 'inline-block',
-      position: 'relative',
-      textAlign: 'center',
-    },
-    arrow: {
-      left: '37%',
-    },
-  };
 
   const handleReveal = () => {
     props.handleReveal(props.state.state);
@@ -119,7 +100,7 @@ function Row(props) {
       <tr
         className={`state ${props.total ? 'is-total' : ''} ${
           props.index % 2 === 0 ? 'is-odd' : ''
-        }`}
+        } ${props.isHighlighted ? 'is-highlighted' : ''}`}
         onMouseEnter={() => props.onHighlightState?.(state, props.index)}
         onMouseLeave={() => props.onHighlightState?.()}
         onClick={!props.total ? handleReveal : null}
@@ -143,12 +124,21 @@ function Row(props) {
               {t(`statenames.${state.state.toLowerCase()}`)}
               {state.statenotes && (
                 <span onClick={handleTooltip}>
-                  <Tooltip
-                    content={[`${state.statenotes}`]}
-                    styles={tooltipStyles}
+                  <span
+                    data-tip={[`${state.statenotes}`]}
+                    data-event="touchstart mouseover"
+                    data-event-off="mouseleave"
                   >
                     <Icon.Info />
-                  </Tooltip>
+                  </span>
+                  <ReactTooltip
+                    place="right"
+                    type="dark"
+                    effect="solid"
+                    multiline={true}
+                    scrollHide={true}
+                    globalEventOff="click"
+                  />
                 </span>
               )}
             </span>
@@ -287,7 +277,11 @@ function Row(props) {
               return (
                 <tr
                   key={index}
-                  className={`district ${index % 2 === 0 ? 'is-odd' : ''}`}
+                  className={`district ${index % 2 === 0 ? 'is-odd' : ''} ${
+                    props.highlightedDistrict === district
+                      ? 'is-highlighted'
+                      : ''
+                  }`}
                   style={{
                     background: index % 2 === 0 ? '#f8f9fa' : '',
                   }}
@@ -296,7 +290,19 @@ function Row(props) {
                   }
                   onMouseLeave={() => props.onHighlightDistrict?.()}
                 >
-                  <td style={{fontWeight: 600}}>{district}</td>
+                  <td className="unknown" style={{fontWeight: 600}}>
+                    {district}
+                    <span onClick={handleTooltip}>
+                      <span
+                        data-for="unknown"
+                        data-tip={[[sortedDistricts[district].notes]]}
+                        data-event="touchstart mouseover"
+                        data-event-off="mouseleave"
+                      >
+                        {sortedDistricts[district].notes && <Icon.Info />}
+                      </span>
+                    </span>
+                  </td>
                   <td>
                     <span className="deltas" style={{color: '#ff073a'}}>
                       {sortedDistricts[district].delta.confirmed > 0 && (
@@ -321,12 +327,18 @@ function Row(props) {
           <tr className={`district`}>
             <td className="unknown" style={{fontWeight: 600}}>
               Unknown
-              <Tooltip
-                content={['Awaiting patient-level details from State Bulletin']}
-                styles={tooltipStyles}
-              >
-                <Icon.Info />
-              </Tooltip>
+              <span onClick={handleTooltip}>
+                <span
+                  data-for="unknown"
+                  data-tip={
+                    'Awaiting patient-level details from State Bulletin'
+                  }
+                  data-event="touchstart mouseover"
+                  data-event-off="mouseleave"
+                >
+                  <Icon.Info />
+                </span>
+              </span>
             </td>
             <td>
               <span className="deltas" style={{color: '#ff073a'}}>
@@ -339,6 +351,26 @@ function Row(props) {
               </span>
               <span className="table__count-text">
                 {formatNumber(sortedDistricts['Unknown'].confirmed)}
+              </span>
+            </td>
+          </tr>
+        </React.Fragment>
+      )}
+
+      {showDistricts && (
+        <React.Fragment>
+          <tr>
+            <td colSpan={2}>
+              <span className="unknown">
+                <ReactTooltip
+                  id="unknown"
+                  place="right"
+                  type="dark"
+                  effect="solid"
+                  multiline={true}
+                  scrollHide={true}
+                  globalEventOff="click"
+                />
               </span>
             </td>
           </tr>

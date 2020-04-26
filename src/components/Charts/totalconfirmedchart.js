@@ -19,7 +19,7 @@ function TotalConfirmedChart(props) {
 
   props.timeseries.forEach((data, index) => {
     if (index >= 0) {
-      dates.push(moment(data.date.trim(), 'DD/MM/YYYY'));
+      dates.push(moment(data.date.trim(), 'DD/MM/YYYY').utcOffset('+06:30'));
       confirmed.push(data.totalconfirmed);
       recovered.push(data.totalrecovered);
       deceased.push(data.totaldeceased);

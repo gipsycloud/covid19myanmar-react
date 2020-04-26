@@ -26,7 +26,7 @@ function AllStatesChart(props) {
 
     Object.keys(data).forEach((key) => {
       if (key === 'date') {
-        dates.push(moment(data.date.trim(), 'DD/MM/yyyy'));
+        dates.push(moment(data.date.trim(), 'DD/MM/yyyy').utcOffset('+06:30'));
       }
 
       if (key === 'status' || key === 'date') {
