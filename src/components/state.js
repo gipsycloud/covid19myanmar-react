@@ -9,6 +9,7 @@ import TimeSeries from './timeseries';
 
 import {MAP_META, STATE_CODES} from '../constants';
 import {
+  getStateName,
   formatDateAbsolute,
   parseStateTimeseries,
 } from '../utils/commonfunctions';
@@ -111,11 +112,11 @@ function State(props) {
         <div className="state-left">
           <div className="breadcrumb">
             <Breadcrumb>
-              <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
+              <Breadcrumb.Item href="/">{t('menu.home')}</Breadcrumb.Item>
               <Dropdown direction="w">
                 <summary>
                   <Breadcrumb.Item href={`${stateCode}`} selected>
-                    {stateName}
+                    {getStateName(stateCode)}
                   </Breadcrumb.Item>
                   <Dropdown.Caret className="caret" />
                 </summary>
@@ -124,7 +125,7 @@ function State(props) {
                     {allStateData.map((state) => (
                       <Dropdown.Item key={state.statecode} className="item">
                         <Link to={`${state.statecode}`}>
-                          {STATE_CODES[state.statecode]}
+                          {getStateName(state.statecode)}
                         </Link>
                       </Dropdown.Item>
                     ))}
@@ -139,7 +140,7 @@ function State(props) {
               className="header-left fadeInUp"
               style={{animationDelay: '0.3s'}}
             >
-              <h1>{t(`statenames.${stateName.toLowerCase()}`)}</h1>
+              <h1>{getStateName(stateCode)}</h1>
               <h5>
                 {t('statepage.lastUpdatedOn', {time: Object.keys(stateData).length
                   ? formatDateAbsolute(stateData.lastupdatedtime)
