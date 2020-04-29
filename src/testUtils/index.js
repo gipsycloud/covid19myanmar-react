@@ -31,7 +31,7 @@ export async function getStatesAndDistrictsFromMaps() {
     const fileName = dirent.name;
     const fileNameWithoutExtension = removeFileExtension(fileName);
 
-    if (fileName === 'india.json') continue;
+    if (fileName === 'myanmar.json') continue;
     const data = JSON.parse(
       await fs.readFile(`public/maps/${fileName}`, 'binary')
     );

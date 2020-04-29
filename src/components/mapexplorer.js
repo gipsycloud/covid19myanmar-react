@@ -200,7 +200,7 @@ function MapExplorer({
         </div>
       )}
       <div className="header">
-        <h1>{t("Map", {name: t(currentMap.name)})}</h1>
+        <h1>{t("Map", {name: currentMap.mapType === MAP_TYPES.COUNTRY ? t(currentMap.name) : localizedStateName(currentMap.name)})}</h1>
         <h6>
         {window.innerWidth <= 769 ?
         (currentMap.mapType === MAP_TYPES.COUNTRY ? t('map.tap.state') : t('map.tap.district'))
@@ -285,6 +285,15 @@ function MapExplorer({
             </h3>
           </div>
         )}
+        
+        {currentMap.mapType === MAP_TYPES.STATE ? (
+          <Link to={`state/${currentHoveredRegion.statecode}`}>
+            <div className="button state-page-button">
+              <abbr>{t("Visit state page")}</abbr>
+              <Icon.ArrowRightCircle />
+            </div>
+          </Link>
+        ) : null}
 
         {currentMap.mapType === MAP_TYPES.STATE &&
         currentHoveredRegion.name !== currentMap.name ? (
@@ -296,7 +305,7 @@ function MapExplorer({
               : 0}
             <br />
             <span style={{fontSize: '0.75rem', fontWeight: 600}}>
-              {mapOption}
+              {t(`${mapOption}.full`)}
             </span>
           </h1>
         ) : null}
@@ -316,15 +325,6 @@ function MapExplorer({
           >
             {t("Back")}
           </div>
-        ) : null}
-
-        {currentMap.mapType === MAP_TYPES.STATE ? (
-          <Link to={`state/${currentHoveredRegion.statecode}`}>
-            <div className="button state-page-button">
-              <abbr>{t("Visit state page")}</abbr>
-              <Icon.ArrowRightCircle />
-            </div>
-          </Link>
         ) : null}
       </div>
 

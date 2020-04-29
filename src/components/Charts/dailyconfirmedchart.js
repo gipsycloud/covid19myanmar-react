@@ -5,8 +5,8 @@ import {
   formatNumber,
 } from './chart-defaults';
 
+import {format, parse} from 'date-fns';
 import deepmerge from 'deepmerge';
-import moment from 'moment';
 import React from 'react';
 import {Bar, defaults} from 'react-chartjs-2';
 import {useTranslation} from 'react-i18next';
@@ -23,8 +23,9 @@ function DailyConfirmedChart(props) {
   }
 
   props.timeseries.forEach((data, index) => {
-    if (index >= 0) {
-      dates.push(moment(data.date.trim(), 'DD/MM/yyyy').utcOffset('+06:30').format('DD MMM'));
+    if (index >= 31) {
+      const date = parse(data.date, 'dd/MM/yyyy', new Date());
+      dates.push(format(date, 'dd MMM'));
       confirmed.push(data.dailyconfirmed);
       recovered.push(data.dailyrecovered);
       deceased.push(data.dailydeceased);

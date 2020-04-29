@@ -7,14 +7,14 @@ function DownloadBlock(props) {
       <a
         className="button"
         target="_noblank"
-        href="https://raw.githubusercontent.com/covid19india/api/gh-pages/raw_data.json"
+        href="https://raw.githubusercontent.com/thantthet/covid19-api/gh-pages/raw_data.json"
       >
         <Icon.Download /> <span>JSON</span>
       </a>
       <a
         className="button"
         target="_noblank"
-        href="https://raw.githubusercontent.com/covid19india/api/gh-pages/csv/latest/raw_data.csv"
+        href="https://raw.githubusercontent.com/thantthet/covid19-api/gh-pages/csv/latest/raw_data.csv"
       >
         <Icon.Download /> <span>CSV</span>
       </a>

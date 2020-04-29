@@ -3,6 +3,11 @@ export const MAP_TYPES = {
   STATE: 'state',
 };
 
+export const MAP_STATISTICS = {
+  TOTAL: 0,
+  PER_MILLION: 1,
+};
+
 export const MAPS_DIR = '/maps';
 
 export const MAP_META = {
@@ -122,19 +127,18 @@ export const STATE_CODES = {
   "MM-06": 'Yangon',
 };
 
+const stateCodes = [];
 const reverseStateCodes = {};
 Object.keys(STATE_CODES).map((key, index) => {
   reverseStateCodes[STATE_CODES[key]] = key;
-  return null;
-});
-export const STATE_CODES_REVERSE = reverseStateCodes;
-
-const stateCodes = [];
-Object.keys(STATE_CODES).map((key, index) => {
   stateCodes.push({code: key, name: STATE_CODES[key]});
   return null;
 });
+export const STATE_CODES_REVERSE = reverseStateCodes;
 export const STATE_CODES_ARRAY = stateCodes;
+
+export const STATE_POPULATIONS = {
+};
 
 export const DISTRICTS_ARRAY = [
   

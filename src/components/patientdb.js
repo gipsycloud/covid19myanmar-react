@@ -8,6 +8,7 @@ import React, {useState, useEffect} from 'react';
 import DatePicker from 'react-date-picker';
 import {useTranslation} from 'react-i18next';
 import * as Icon from 'react-feather';
+import {Helmet} from 'react-helmet';
 import {useLocation} from 'react-router-dom';
 import {useEffectOnce, useLocalStorage} from 'react-use';
 
@@ -114,6 +115,15 @@ function PatientDB(props) {
 
   return (
     <div className="PatientsDB">
+      <Helmet>
+        <title>Demographics - covid19.ttkz.me</title>
+        <meta name="title" content={`Demographics - covid19.ttkz.me`} />
+        <meta
+          name="description"
+          content="A demographical overview of the Myanmar population affected by the coronavirus."
+        />
+      </Helmet>
+
       <div className="filters fadeInUp" style={{animationDelay: '0.2s'}}>
         <div className="filters-left">
           <div className="select">

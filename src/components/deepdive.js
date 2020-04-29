@@ -8,6 +8,7 @@ import TotalConfirmedChart from './Charts/totalconfirmedchart';
 
 import axios from 'axios';
 import React, {useState, useEffect} from 'react';
+import {Helmet} from 'react-helmet';
 import {useTranslation} from 'react-i18next';
 
 function DeepDive() {
@@ -45,6 +46,11 @@ function DeepDive() {
 
   return (
     <div className="cards-container">
+      <Helmet>
+        <title>Deep Dive - covid19.ttkz.me</title>
+        <meta name="title" content="Deep Dive - covid19.ttkz.me" />
+      </Helmet>
+
       <section className="cards">
         <div className="card fadeInUp" style={{animationDelay: '0.7s'}}>
           <TotalConfirmedChart title={t("Total Cases")} timeseries={timeseries} />
