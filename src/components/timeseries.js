@@ -4,7 +4,6 @@ import {useResizeObserver} from '../utils/hooks';
 import * as d3 from 'd3';
 import {addDays, subDays, format} from 'date-fns';
 import React, {useState, useEffect, useRef, useCallback} from 'react';
-import * as Icon from 'react-feather';
 import {useTranslation} from 'react-i18next';
 
 function TimeSeries(props) {
