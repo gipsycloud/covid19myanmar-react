@@ -60,8 +60,7 @@ const validateCTS = (data = []) => {
     'totalrecovered',
   ];
   return data
-    .filter((d) => dataTypes.every((dt) => d[dt]) && d.date)
-    .filter((d) => dataTypes.every((dt) => Number(d[dt]) >= 0))
+    .filter((d) => dataTypes.every((dt) => d[dt] >= 0) && d.date)
     .filter((d) => {
       // Skip data from the current day
       const today = getMyanmarDay();
