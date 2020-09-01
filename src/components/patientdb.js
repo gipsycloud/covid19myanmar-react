@@ -30,7 +30,7 @@ function PatientDB(props) {
   const {pathname} = useLocation();
   const [colorMode, setColorMode] = useState('genders');
   const [scaleMode, setScaleMode] = useState(false);
-  const [filterDate, setFilterDate] = useState(null);
+  const [filterDate, setFilterDate] = useState(subDays(new Date(), 1));
   const [showReminder, setShowReminder] = useLocalStorage('showReminder', true);
   const [message, setMessage] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -38,8 +38,7 @@ function PatientDB(props) {
     detectedstate: '',
     detecteddistrict: '',
     detectedcity: '',
-    dateannounced: '',
-    // unfilter until data are low enough to show
+    dateannounced: format(subDays(new Date(), 1), 'dd/MM/yyyy'),
   });
 
   useEffect(() => {
