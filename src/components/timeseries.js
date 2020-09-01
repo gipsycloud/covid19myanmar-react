@@ -9,9 +9,7 @@ import {useTranslation} from 'react-i18next';
 function TimeSeries(props) {
   const {t} = useTranslation();
 
-  const [lastDaysCount, setLastDaysCount] = useState(
-    window.innerWidth > 512 ? Infinity : 30
-  );
+  const [lastDaysCount, setLastDaysCount] = useState(30);
   const [timeseries, setTimeseries] = useState([]);
   const [datapoint, setDatapoint] = useState({});
   const [index, setIndex] = useState(0);
